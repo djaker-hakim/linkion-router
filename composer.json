@@ -1,0 +1,25 @@
+{
+    "name": "djaker-hakim/linkion-router",
+    "description": "linkion SPA Router",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hakim",
+            "email": "hakiltheknight@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Linkion\\Router\\": "src/"
+        }
+    },
+    "extra": {
+    "laravel": {
+        "providers": [
+            "Linkion\\LinkionRouterServiceProvider"
+            ]
+        }
+    }
+}
