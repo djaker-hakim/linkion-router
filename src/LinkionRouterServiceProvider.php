@@ -19,6 +19,7 @@ class LinkionRouterServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // load linkion router script
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
     }
 }
