@@ -10,13 +10,7 @@ export const navigationTrait = {
         return el; 
     },
 
-    start(){
-        this.readUrl();
-        this.preload();
-        window.addEventListener('popstate', () => {
-            router.reload();
-        });
-    },
+    
     // TODO in navigation file
     // replace(path, params){},     
     // href(uri){},                 // your existing one
@@ -49,13 +43,7 @@ export const navigationTrait = {
         history.go(delta);
     },
 
-    getRouteByName(name){
-        let [route] = this.component.routes.filter((r) => {
-            return r.name == name;
-        });
-        return route;
-    },
-
+    
     // TODO set url params for route nameing
     setParams(pattern, params){
         if(pattern.indexOf(':') == -1) return pattern;
@@ -83,36 +71,7 @@ export const navigationTrait = {
         this.reload();
     },
 
-    reload(){
-        this.readUrl();
-        linkion.render(
-            this.route.component,
-            {
-                atts: this.route.atts, 
-                params: this.params, 
-                queryParams: this.queryParams 
-            },
-            this.getEl());
-    },
-
-  
-
-    preload(){
-        let routes = [];
-        this.component.routes.forEach(route => {
-            route.preload ? routes.push(route) : '';
-        });
-        if(routes.length == 0 && this.component.routes.length < 5) routes = this.component.routes;
-        for(let route of routes){
-            linkion.render(
-                route.component, 
-                {
-                    atts: route.atts
-                }
-            );
-        }
-    },
-
+    
 
 }
 

@@ -15,10 +15,29 @@ trait ResolveRoute {
     protected function init(Request $request){
 
         $parser = new RouteParser($request->getPathInfo(), $this->getRoutes());
-        $this->component = $parser->getRoute()['component'];
-        $this->atts = $parser->getRoute()['atts'];
-        $this->params = $parser->getParams();
-        $this->queryParams = $request->query();
+        
+        $route = $parser->getRoute();
+        if($route){
 
+            $this->component = $route['component'];
+            $this->atts = $route['atts'];
+            $this->params = $parser->getParams();
+            $this->queryParams = $request->query();
+        
+        }else {
+            $this->component = 'page-error';
+            $this->atts = [
+                'code' => 404,
+                'message' => "NOT_FOUND"
+            ];
+            $this->params = [];
+            $this->queryParams = [];
+            $route = $parser->getRouteByName("404-page");
+            if($route){
+                $this->component = $route['component'];
+                $this->atts = $route['atts'] ?? [];
+            }     
+        }
     }
+
 }

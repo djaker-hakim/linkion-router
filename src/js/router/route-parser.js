@@ -27,6 +27,7 @@ export const routeParser = {
     },
 
     matchRoute(route){
+        if(!route.path) return null; // to avoid custom error routes
         if(route.path == this.pathname) return route;
         if(this.getParamsFromRoute(route.path, this.pathname)) return route;
         return null;
@@ -57,7 +58,14 @@ export const routeParser = {
             params[name] = match[index + 1];
         });
         return params
-    }
+    },
+
+    getRouteByName(name){
+        let [route] = this.component.routes.filter((r) => {
+            return r.name == name;
+        });
+        return route;
+    },
         
 
 

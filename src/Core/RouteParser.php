@@ -19,8 +19,16 @@ public function __construct($pathname, $routes)
     if($this->route) $this->params = $this->getParamsFromRoute($this->route['path'], $this->pathname);
 }
 
-public function getRoute(): array{
+public function getRoute(): array|null{
     return $this->route;
+}
+
+public function getRouteByName(string $name): ?array{
+    foreach($this->routes as $route){
+        if(!isset($route['name'])) continue;
+        if($route['name'] == $name) return $route;
+    }
+    return null;
 }
 
 public function getParams(): array{
@@ -35,13 +43,14 @@ protected function checkRoutes(): array|null{
 }
 
 
-protected function matchRoute(array $route): array|null{
+protected function matchRoute(array $route): ?array{
+    if(!isset($route['path'])) return null;
     if($route['path'] == $this->pathname) return $route;
     if($this->getParamsFromRoute($route['path'], $this->pathname)) return $route;
     return null;
 }
 
-protected function getParamsFromRoute($pattern, $path): array|null {
+protected function getParamsFromRoute(string $pattern, string $path): array|null {
     $paramNames = [];
 
     // Escape slashes and replace :param with capture groups
@@ -69,5 +78,5 @@ protected function getParamsFromRoute($pattern, $path): array|null {
     }
 
     return $params;
-} 
+}
 }
