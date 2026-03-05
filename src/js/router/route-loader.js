@@ -5,10 +5,11 @@ export const routeLoader = {
         this.readUrl();
         this.preload();
         window.addEventListener('popstate', () => {
-            router.reload();
+            this.pathname + this.search == location.pathname + location.search ?
+            this.hash = location.hash :
+            this.reload();
         });
     },
-
 
     reload(){
         this.readUrl();

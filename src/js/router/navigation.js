@@ -27,6 +27,7 @@ export const navigationTrait = {
         url = new URL(location);
         url.pathname = pathname;
         url.search = this.setSearchParams(queryParams);
+        url.hash = hash
         this.setHref(url);
     },
 
@@ -43,8 +44,7 @@ export const navigationTrait = {
         history.go(delta);
     },
 
-    
-    // TODO set url params for route nameing
+
     setParams(pattern, params){
         if(pattern.indexOf(':') == -1) return pattern;
         let path = pattern;
@@ -60,6 +60,10 @@ export const navigationTrait = {
             searchParams.set(key, params[key]);
         }
         return searchParams.toString();
+    },
+
+    setHash(hash){
+        location.hash = hash;
     },
 
     setHref(link){
