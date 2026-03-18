@@ -11,6 +11,7 @@ export const routeLoader = {
             this.hash = location.hash :
             this.reload();
         });
+        linkion.emit('linkion-router:ready');
     },
 
     reload(){

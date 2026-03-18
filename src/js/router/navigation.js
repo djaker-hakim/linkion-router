@@ -13,10 +13,17 @@ export const navigationTrait = {
     
     // TODO in navigation file
     // replace(path, params){},     
-    // href(uri){},                 // your existing one
-    // setHash(hash){},             // update hash only
+    
 
-    to(pathOrName, allParams = {}, hash = ''){
+    to(pathOrName, allParams, hash){
+        this.setHref(this.buildUrl(pathOrName, allParams, hash));
+    },
+
+    redirectTo(pathOrName, allParams = {}, hash = ''){
+        this.redirect(this.buildUrl(pathOrName, allParams, hash));
+    },
+
+    buildUrl(pathOrName, allParams = {}, hash = ''){
         let pathname = pathOrName;
         const {params, queryParams} = allParams;
         route = this.getRouteByName(pathOrName);
@@ -24,11 +31,11 @@ export const navigationTrait = {
             pathname = route.path;
             if(params) pathname = this.setParams(route.path, params);
         } 
-        url = new URL(location);
+        const url = new URL(location);
         url.pathname = pathname;
         url.search = this.setSearchParams(queryParams);
         url.hash = hash
-        this.setHref(url);
+        return url;
     },
 
     
@@ -64,6 +71,14 @@ export const navigationTrait = {
 
     setHash(hash){
         location.hash = hash;
+    },
+
+    redirect(link){
+        // change the href
+        history.replaceState({}, "",link);
+
+        // navigate to destination
+        this.reload();
     },
 
     setHref(link){

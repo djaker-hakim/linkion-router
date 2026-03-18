@@ -22,7 +22,7 @@ export const guards = {
     },
 
     runGuards(event, to, from) {
-        for (const guard of this.guards[event] || []) {
+        for (const [id, guard] of this.guards[event] || []) {
             const result = this.executeGuard(guard, to, from);
             
             // If guard returns false or redirect, stop execution
@@ -34,9 +34,8 @@ export const guards = {
 
     // Execute single guard with next() callback
     executeGuard(guard, to, from) {
-        const next = (value = true) => {
-            return value;
-        };
+        if(!typeof guard === 'function') return true;
+        const next = (value = true) => { return value };
 
         return guard(to, from, next);
     },
