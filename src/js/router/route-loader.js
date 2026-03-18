@@ -1,4 +1,6 @@
-    
+import { Route } from "./route";
+
+
 export const routeLoader = {
 
     start(){
@@ -12,7 +14,18 @@ export const routeLoader = {
     },
 
     reload(){
+        const from = new Route(this);
+        
         this.readUrl();
+
+        const to = new Route(this);
+
+        // run guards before navigating
+        if(!this.runGuards('before-navigation', to, from)){
+            this.runGuards('cancel-navigation', to, from);
+            return;
+        }
+
         if(this.route){
             linkion.render(
                 this.route.component,
@@ -21,7 +34,9 @@ export const routeLoader = {
                     params: this.params, 
                     queryParams: this.queryParams 
                 },
-                this.getEl());
+                this.getEl()).then(() => {
+                    this.runGuards('after-navigation', to, from);
+                });
         }else {
             let component = "page-error";
             let atts = {
