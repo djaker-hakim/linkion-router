@@ -1,0 +1,53 @@
+<?php
+
+namespace App\View\Components;
+
+use Closure;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Linkion\Core\LinkionComponent;
+use Linkion\Router\Core\LinkionRouter;
+use Linkion\Router\Core\ResolveRoute;
+
+
+class {{ class }} extends LinkionComponent implements LinkionRouter
+{
+
+    use ResolveRoute;
+
+    public $routes;
+    public $componentCached = false;
+    public $ref = "{{ class }}";
+
+    /**
+     * Create a new linkion component instance.
+     */
+    public function __construct(Request $request)
+    {
+        $this->init($request);    
+    }
+
+    
+
+    public function getRoutes(): array{
+        return $this->routes = 
+            [
+                // [
+                //     'path' => '/home',
+                //     'name' => 'home',
+                //     'component' => 'home',
+                //     'atts' => [
+                //         'ref' => 'ho'
+                //     ]
+                // ],
+            ];
+    }
+
+    /**
+     * Get the view / contents that represent the linkion component.
+     */
+    public function render(): View|Closure|string
+    {
+        return {{ view }};
+    }
+}

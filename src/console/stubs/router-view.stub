@@ -1,0 +1,24 @@
+@lnknComponent
+    <script @lnknAsset>
+        let router = {}; 
+        function routerInstance(){
+            return new Router(linkion.{{ class }}, '#app');
+        } 
+    </script>
+
+    <div id="app">
+        <x-dynamic-component :$component :$atts :$params :$queryParams />
+    </div>
+    
+    <script @lnknScript>
+        document.addEventListener('linkion:ready', () => {
+            router = routerInstance();
+            router.start();
+
+            //
+         
+        });
+    </script>
+
+    
+@endlnknComponent

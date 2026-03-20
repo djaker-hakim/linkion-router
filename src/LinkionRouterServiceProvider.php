@@ -2,9 +2,9 @@
 
 namespace Linkion\Router;
 
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Linkion\Core\Linkion;
+use Linkion\Router\Console\LinkionRouterMakeCommand;
 use Linkion\Router\LinkionComponents\PageError;
 
 class LinkionRouterServiceProvider extends ServiceProvider
@@ -30,10 +30,10 @@ class LinkionRouterServiceProvider extends ServiceProvider
 
         // Load the component's views
         $this->loadViewsFrom(__DIR__ . '/views', 'lnkn');
-        // dd(__DIR__ . '/views');
-
-        // $linkion = new Linkion();
-        // dd($linkion->getComponents());
-        // dd(Blade::getClassComponentAliases());
+       
+        // loading linkion arisan commands
+        $this->commands([
+            LinkionRouterMakeCommand::class
+        ]);
     }
 }
