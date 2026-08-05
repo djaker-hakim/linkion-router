@@ -62,6 +62,8 @@ export const routeLoader = {
         });
         if(routes.length == 0 && this.component.routes.length < 5) routes = this.component.routes;
         for(let route of routes){
+            // to avoid re-rendering the current page component
+            if(linkion.getComponentByProp('componentName', route.component)) continue; 
             linkion.render(
                 route.component, 
                 {

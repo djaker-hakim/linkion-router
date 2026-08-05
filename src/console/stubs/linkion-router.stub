@@ -37,7 +37,7 @@ class {{ class }} extends LinkionComponent implements LinkionRouter
                 //     'name' => 'home',
                 //     'component' => 'home',
                 //     'atts' => [
-                //         'ref' => 'ho'
+                //         'ref' => 'home'
                 //     ]
                 // ],
             ];

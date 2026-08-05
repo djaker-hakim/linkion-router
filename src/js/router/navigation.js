@@ -10,10 +10,6 @@ export const navigationTrait = {
         return el; 
     },
 
-    
-    // TODO in navigation file
-    // replace(path, params){},     
-    
 
     to(pathOrName, allParams, hash){
         this.setHref(this.buildUrl(pathOrName, allParams, hash));

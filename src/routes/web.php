@@ -8,7 +8,7 @@ Route::get('/linkion/router/script', function () {
 
     return response()->file($file, [
         'Content-Type' => 'application/javascript',
-        // 'Cache-Control' => 'public, max-age=604800',
+        'Cache-Control' => 'public, max-age=604800',
     ]);
 
 });

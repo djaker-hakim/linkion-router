@@ -1,0 +1,1 @@
+<script src="/linkion/router/script"></script>
