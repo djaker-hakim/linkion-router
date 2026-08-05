@@ -18,6 +18,49 @@ Built to integrate natively with the **Linkion Laravel backend**, Linkion Router
 Linkion Router is designed to remain minimal, extensible, and framework-independent while providing first-class integration with the Linkion backend ecosystem.
 
 
+# Table of Contents
+
+- [Getting Started](#getting-started)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+- [Setup](#setup)
+  - [Generate the Application Router](#1-generate-the-application-router)
+  - [Configure the Router](#2-configure-the-router)
+  - [Include the Required Scripts](#3-include-the-required-scripts)
+  - [Mount the Router](#4-mount-the-router)
+  - [Create the Router View](#5-create-the-router-view)
+- [Defining Routes](#defining-routes)
+  - [Route Structure](#route-structure)
+  - [Static Routes](#static-routes)
+  - [Dynamic Route Parameters](#dynamic-route-parameters)
+  - [Component Attributes](#component-attributes)
+  - [Route Order](#route-order)
+  - [404 (Not Found) Route](#404-not-found-route)
+  - [Route Preloading](#route-preloading)
+- [The Router Object](#the-router-object)
+  - [`router.to()`](#routerto)
+  - [`router.setHref()`](#routersethref)
+  - [Browser History](#browser-history)
+    - [`router.back()`](#routerback)
+    - [`router.forward()`](#routerforward)
+    - [`router.go()`](#routergo)
+  - [Redirects](#redirects)
+    - [`router.redirectTo()`](#routerredirectto)
+    - [`router.redirect()`](#routerredirect)
+- [Navigation Guards](#navigation-guards)
+  - [Available Hooks](#available-hooks)
+  - [Registering a Guard](#registering-a-guard)
+  - [Removing a Guard](#removing-a-guard)
+  - [`before-navigation`](#before-navigation)
+  - [`cancel-navigation`](#cancel-navigation)
+  - [`after-navigation`](#after-navigation)
+- [Backend Route Protection](#backend-route-protection)
+  - [Protecting a Component](#protecting-a-component)
+  - [Why Use Backend Middleware?](#why-use-backend-middleware)
+  - [The Recommended Approach](#the-recommended-approach)
+  - [Learn More](#learn-more)
+- [Conclusion](#conclusion)
+
 # Getting Started
 
 This guide will help you install and configure **Linkion Router** in your Laravel application.
