@@ -60,7 +60,7 @@ export const navigationTrait = {
     setSearchParams(queryParams){
         const searchParams = new URLSearchParams();
         for (const key in queryParams) {
-            searchParams.set(key, params[key]);
+            searchParams.set(key, queryParams[key]);
         }
         return searchParams.toString();
     },
